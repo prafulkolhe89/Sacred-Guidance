@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Cormorant Garamond', serif;
+
+  /* Premium Spiritual Palette */
+  /* Saffron */
+  --color-saffron: hsl(20 84% 51%);
+  /* Warm Gold */
+  --color-gold: hsl(44 54% 54%);
+  /* Ivory */
+  --color-ivory: hsl(39 71% 95%);
+  /* Cream */
+  --color-cream: hsl(39 65% 92%);
+  /* Deep Maroon */
+  --color-maroon: hsl(346 61% 26%);
+  /* Amber Glow */
+  --color-amber: hsl(38 92% 50%);
+
+  --color-background: hsl(39 71% 95%); /* Ivory */
+  --color-foreground: hsl(346 61% 26%); /* Deep Maroon */
+  
+  --color-card: hsl(39 65% 92%); /* Cream */
+  --color-card-foreground: hsl(346 61% 26%);
+  
+  --color-popover: hsl(39 71% 95%);
+  --color-popover-foreground: hsl(346 61% 26%);
+  
+  --color-primary: hsl(20 84% 51%); /* Saffron */
+  --color-primary-foreground: hsl(39 71% 95%); /* Ivory */
+  
+  --color-secondary: hsl(44 54% 54%); /* Warm Gold */
+  --color-secondary-foreground: hsl(346 61% 26%); /* Maroon */
+  
+  --color-muted: hsl(39 30% 85%);
+  --color-muted-foreground: hsl(346 40% 40%);
+  
+  --color-accent: hsl(38 92% 50%); /* Amber */
+  --color-accent-foreground: hsl(346 61% 26%);
+  
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+  
+  --color-border: hsl(44 30% 80%);
+  --color-input: hsl(44 30% 80%);
+  --color-ring: hsl(44 54% 54%);
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+}
+
+:root {
+  --background: 39 71% 95%;
+  --foreground: 346 61% 26%;
+  --card: 39 65% 92%;
+  --card-foreground: 346 61% 26%;
+  --popover: 39 71% 95%;
+  --popover-foreground: 346 61% 26%;
+  --primary: 20 84% 51%;
+  --primary-foreground: 39 71% 95%;
+  --secondary: 44 54% 54%;
+  --secondary-foreground: 346 61% 26%;
+  --muted: 39 30% 85%;
+  --muted-foreground: 346 40% 40%;
+  --accent: 38 92% 50%;
+  --accent-foreground: 346 61% 26%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 44 30% 80%;
+  --input: 44 30% 80%;
+  --ring: 44 54% 54%;
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased font-sans selection:bg-gold/30;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-semibold tracking-tight;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Utilities for Spiritual Aesthetic */
+.glass-panel {
+  @apply bg-ivory/80 backdrop-blur-md border border-gold/20 shadow-[0_8px_32px_rgba(107,26,45,0.05)];
+}
+
+.text-gradient-gold {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-gold via-amber to-saffron;
+}

@@ -1,0 +1,22 @@
+packages:
+  "framer-motion": "For elegant, smooth scroll animations and entry effects"
+  "clsx": "Utility for constructing className strings conditionally"
+  "tailwind-merge": "Utility function to efficiently merge Tailwind CSS classes"
+  "react-hook-form": "For managing the contact form state"
+  "@hookform/resolvers": "For Zod validation integration with react-hook-form"
+
+images:
+  - path: "artifacts/pandit-website/public/images/hero-bg.png"
+    description: "Subtle, luxurious, and divine background. Deep warm gradients blending from dark maroon to glowing amber, with very faint, elegant, fine-line mandala and lotus motifs seamlessly integrated. Soft light leaks, no harsh elements, extremely premium and spiritual."
+    aspect_ratio: "16:9"
+  - path: "artifacts/pandit-website/public/images/about-illustration.png"
+    description: "An elegant, highly aesthetic, minimalist illustration of a traditional Vedic setup. A warm glowing brass diya (oil lamp), soft marigold petals, and a hint of a sacred text or rudraksha beads, sitting on a luxurious cream surface with soft ambient lighting."
+    aspect_ratio: "4:3"
+  - path: "artifacts/pandit-website/public/images/mandala-texture.png"
+    description: "A seamless, very faint, transparent gold and ivory mandala pattern to be used as a subtle background texture. Minimalist, premium, clean lines."
+    aspect_ratio: "1:1"
+
+notes:
+  - This is a static single-page landing website.
+  - The contact form will simulate submission with a success toast.
+  - Intra-page navigation relies on smooth scrolling to element IDs.
