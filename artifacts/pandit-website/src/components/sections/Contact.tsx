@@ -16,23 +16,52 @@ const FORMSUBMIT_FORM_ID =
 /** Same number as the WhatsApp button — inquiry opens in visitor’s WhatsApp; they tap Send to deliver a copy. */
 const WHATSAPP_INBOX_E164 = '918421115719';
 
+const SERVICE_LABELS: Record<string, string> = {
+  'griha-pravesh': 'Griha Pravesh Puja',
+  satyanarayan: 'Satyanarayan Puja',
+  ganesh: 'Ganesh Chaturthi Puja',
+  rudrabhishek: 'Rudrabhishek Puja',
+  astrology: 'Astrology Consultation',
+  other: 'Other rituals / general inquiry',
+};
+
+function serviceLabelForWhatsApp(value: string): string {
+  if (!value) return '—';
+  return SERVICE_LABELS[value] ?? value.replace(/-/g, ' ');
+}
+
 function buildWhatsAppInquiryText(fields: {
   name: string;
   phone: string;
   service: string;
   message: string;
 }): string {
-  const lines = [
-    '*Sacred Guidance — website form*',
+  const service = serviceLabelForWhatsApp(fields.service);
+  const details = fields.message.trim() || '_No additional details._';
+
+  const parts = [
+    '🙏 *Sacred Guidance*',
+    '_New inquiry from the website_',
     '',
-    `Name: ${fields.name}`,
-    `Phone: ${fields.phone}`,
-    `Service: ${fields.service || '—'}`,
+    '────────────────────',
     '',
-    'Message:',
-    fields.message || '—',
+    '*Name*',
+    fields.name.trim() || '—',
+    '',
+    '*Phone*',
+    fields.phone.trim() || '—',
+    '',
+    '*Service*',
+    service,
+    '',
+    '*Message / details*',
+    details,
+    '',
+    '────────────────────',
+    '_www.darbheguruji.com_',
   ];
-  let text = lines.join('\n');
+
+  let text = parts.join('\n');
   if (text.length > 1800) {
     text = `${text.slice(0, 1796)}…`;
   }
@@ -69,7 +98,7 @@ export function Contact() {
         phone,
         service,
         message,
-        _subject: 'Sacred Guidance website — new message',
+        _subject: 'Sacred Guidance - New Enquiry',
         _template: 'table',
       };
 
