@@ -1,29 +1,67 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 
+/** Inquiries go to this inbox (same as Contact panel). Uses FormSubmit (free tier) — works on static GitHub Pages. */
+const CONTACT_INBOX_EMAIL = 'darbhe123@gmail.com';
+
 export function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    if (fd.get('_honey')) {
+      return;
+    }
+
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const payload: Record<string, string> = {
+        name: String(fd.get('name') ?? ''),
+        phone: String(fd.get('phone') ?? ''),
+        service: String(fd.get('service') ?? ''),
+        message: String(fd.get('message') ?? ''),
+        _subject: 'Sacred Guidance website — new message',
+        _template: 'table',
+      };
+
+      const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_INBOX_EMAIL}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = (await res.json()) as { success?: boolean; message?: string };
+
+      if (!res.ok || data.success === false) {
+        throw new Error(data.message || 'Could not send message');
+      }
+
+      form.reset();
       toast({
-        title: "Message Sent Successfully",
-        description: "Hari Om. Panditji will contact you shortly.",
+        title: 'Message sent',
+        description: 'Hari Om. Panditji will contact you shortly.',
         duration: 5000,
       });
-      (e.target as HTMLFormElement).reset();
-    }, 1000);
+    } catch {
+      toast({
+        title: 'Could not send',
+        description: 'Please try WhatsApp or call +91 8421115719.',
+        variant: 'destructive',
+        duration: 8000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -114,22 +152,32 @@ export function Contact() {
           <div className="lg:col-span-3 p-10 lg:p-12">
             <h3 className="font-display text-3xl font-semibold text-maroon mb-8">Send a Message</h3>
             
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+              {/* Honeypot — leave hidden; bots that fill it are ignored by client */}
+              <input
+                type="text"
+                name="_honey"
+                tabIndex={-1}
+                autoComplete="off"
+                className="absolute opacity-0 pointer-events-none h-0 w-0 overflow-hidden"
+                aria-hidden="true"
+              />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-maroon">Your Name</label>
-                  <Input id="name" required placeholder="Shri/Smt..." />
+                  <Input id="name" name="name" required placeholder="Shri/Smt..." />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="phone" className="text-sm font-medium text-maroon">Phone Number</label>
-                  <Input id="phone" type="tel" required placeholder="+91" />
+                  <Input id="phone" name="phone" type="tel" required placeholder="+91" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="service" className="text-sm font-medium text-maroon">Service Needed</label>
-                <select 
-                  id="service" 
+                <select
+                  id="service"
+                  name="service"
                   required
                   className="flex h-12 w-full rounded-xl border border-gold/30 bg-ivory/50 px-4 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:bg-ivory transition-all text-maroon"
                 >
@@ -145,9 +193,10 @@ export function Contact() {
 
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-medium text-maroon">Message or Details</label>
-                <Textarea 
-                  id="message" 
-                  placeholder="Tell us about your requirements, preferred dates, etc." 
+                <Textarea
+                  id="message"
+                  name="message"
+                  placeholder="Tell us about your requirements, preferred dates, etc."
                   rows={4}
                 />
               </div>
