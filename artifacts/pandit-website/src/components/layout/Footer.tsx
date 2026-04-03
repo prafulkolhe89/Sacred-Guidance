@@ -69,7 +69,7 @@ export function Footer() {
 
         <div className="border-t border-gold/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-ivory/50">
           <p>© {currentYear} Pandit Devesh Darbhe. All Rights Reserved.</p>
-          <p>Designed with devotion</p>
+          <p>Designed by prafulKolhe</p>
         </div>
       </div>
     </footer>
