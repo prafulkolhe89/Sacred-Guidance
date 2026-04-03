@@ -5,8 +5,45 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 
-/** Inquiries go to this inbox (same as Contact panel). Uses FormSubmit (free tier) — works on static GitHub Pages. */
-const CONTACT_INBOX_EMAIL = 'darbhe123@gmail.com';
+/**
+ * FormSubmit form ID from the activation email (replaces the naked email in the URL).
+ * Submissions still arrive at the Gmail you activated with FormSubmit.
+ * Optional: set `VITE_FORMSUBMIT_FORM_ID` in `.env` to override without editing code.
+ */
+const FORMSUBMIT_FORM_ID =
+  import.meta.env.VITE_FORMSUBMIT_FORM_ID ?? 'cf59a9d320206b66f833303c41fe29b4';
+
+/** Same number as the WhatsApp button — inquiry opens in visitor’s WhatsApp; they tap Send to deliver a copy. */
+const WHATSAPP_INBOX_E164 = '918421115719';
+
+function buildWhatsAppInquiryText(fields: {
+  name: string;
+  phone: string;
+  service: string;
+  message: string;
+}): string {
+  const lines = [
+    '*Sacred Guidance — website form*',
+    '',
+    `Name: ${fields.name}`,
+    `Phone: ${fields.phone}`,
+    `Service: ${fields.service || '—'}`,
+    '',
+    'Message:',
+    fields.message || '—',
+  ];
+  let text = lines.join('\n');
+  if (text.length > 1800) {
+    text = `${text.slice(0, 1796)}…`;
+  }
+  return text;
+}
+
+/** Opens WhatsApp (app or web) with pre-filled text. No server API — visitor must tap Send. */
+function openWhatsAppWithText(text: string) {
+  const url = `https://wa.me/${WHATSAPP_INBOX_E164}?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
 
 export function Contact() {
   const { toast } = useToast();
@@ -21,17 +58,22 @@ export function Contact() {
     }
 
     setIsSubmitting(true);
+    const name = String(fd.get('name') ?? '');
+    const phone = String(fd.get('phone') ?? '');
+    const service = String(fd.get('service') ?? '');
+    const message = String(fd.get('message') ?? '');
+
     try {
       const payload: Record<string, string> = {
-        name: String(fd.get('name') ?? ''),
-        phone: String(fd.get('phone') ?? ''),
-        service: String(fd.get('service') ?? ''),
-        message: String(fd.get('message') ?? ''),
+        name,
+        phone,
+        service,
+        message,
         _subject: 'Sacred Guidance website — new message',
         _template: 'table',
       };
 
-      const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_INBOX_EMAIL}`, {
+      const res = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_FORM_ID}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,10 +89,13 @@ export function Contact() {
       }
 
       form.reset();
+      const waText = buildWhatsAppInquiryText({ name, phone, service, message });
+      openWhatsAppWithText(waText);
       toast({
-        title: 'Message sent',
-        description: 'Hari Om. Panditji will contact you shortly.',
-        duration: 5000,
+        title: 'Message sent by email',
+        description:
+          'WhatsApp opened with the same details — tap Send there to deliver a copy to Panditji.',
+        duration: 8000,
       });
     } catch {
       toast({
@@ -141,7 +186,9 @@ export function Contact() {
               <Button 
                 variant="saffron" 
                 className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white border-none shadow-lg shadow-[#25D366]/20"
-                onClick={() => window.open('https://wa.me/918421115719', '_blank')}
+                onClick={() =>
+                  window.open(`https://wa.me/${WHATSAPP_INBOX_E164}`, '_blank', 'noopener,noreferrer')
+                }
               >
                 Message on WhatsApp
               </Button>
