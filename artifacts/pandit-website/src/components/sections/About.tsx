@@ -50,12 +50,12 @@ export function About() {
             </h2>
             
             <h3 className="text-xl text-saffron font-medium mb-6">
-              A Trusted Guide for Vedic Rituals and Astrology
+              A trusted pandit in Nagpur for Vedic rituals and astrology
             </h3>
             
             <div className="space-y-6 text-maroon/70 text-lg leading-relaxed">
               <p>
-                With years of dedicated study and practice in authentic Vedic traditions, Pandit Devesh Darbhe brings the sacred power of ancient rituals into the modern world. His approach is rooted in deep respect, spiritual authenticity, and a genuine desire to uplift others.
+                With years of dedicated study and practice in authentic Vedic traditions, Pandit Devesh Darbhe serves families in Nagpur and nearby areas — bringing the sacred power of ancient rituals into the modern world. His approach is rooted in deep respect, spiritual authenticity, and a genuine desire to uplift others.
               </p>
               <p>
                 Whether you are seeking clarity through astrology, moving into a new home, or performing a ceremony for peace and prosperity, you will receive personalized, compassionate guidance. 

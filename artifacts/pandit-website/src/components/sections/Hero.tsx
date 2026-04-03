@@ -24,7 +24,7 @@ export function Hero() {
           className="flex flex-col items-center"
         >
           <span className="inline-block py-1 px-4 rounded-full border border-gold/30 bg-gold/10 text-gold mb-6 text-sm sm:text-base tracking-widest uppercase font-medium backdrop-blur-sm">
-            Authentic Vedic Astrology & Rituals
+            Pandit in Nagpur · Home Pooja & Vastu
           </span>
           
           <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-ivory mb-6 leading-[1.1] drop-shadow-lg">
@@ -33,7 +33,7 @@ export function Hero() {
           </h1>
           
           <p className="text-lg sm:text-xl md:text-2xl text-ivory/80 max-w-3xl mx-auto mb-10 font-light leading-relaxed">
-            Authentic Vedic rituals and personalized astrological guidance to bring clarity, balance, and harmony into your life's journey.
+            Trusted pooja services in Nagpur — Satyanarayan pooja, Griha Pravesh, Vastu consultant guidance, and Vedic astrology. Rituals at your home with authentic विधि.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md mx-auto">

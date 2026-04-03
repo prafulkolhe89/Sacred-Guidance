@@ -70,10 +70,10 @@ export function Services() {
             <div className="h-px w-12 bg-gold"></div>
           </div>
           <h2 className="font-display text-4xl sm:text-5xl font-bold text-maroon mb-6">
-            Sacred Rituals & Spiritual Guidance
+            Pooja Services in Nagpur
           </h2>
           <p className="text-lg text-maroon/70">
-            Experience the profound peace of traditional ceremonies performed with utmost devotion and authenticity.
+            From Satyanarayan pooja in Nagpur to Vastu Shanti and Griha Pravesh — traditional ceremonies at your home, performed with devotion. Serving families across Nagpur and nearby areas.
           </p>
         </div>
 
