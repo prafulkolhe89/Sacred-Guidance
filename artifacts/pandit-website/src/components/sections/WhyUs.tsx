@@ -40,13 +40,13 @@ export function WhyUs() {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Trust badges could go here, or just a beautiful image */}
-              {/* landscape unspalsh image of holy fire or flowers */}
               <div className="col-span-1 sm:col-span-2 rounded-2xl overflow-hidden border-2 border-gold/20 shadow-2xl h-64">
-                <img 
-                  src="https://pixabay.com/get/gc5a3878ee0ab2fb1990022100f12b6381965dca93dcf54fa2a232980a599308f850210370f29ba0a94380875f5b09c78f348d4ef676e799bfb1ffdca8ae7e03b_1280.jpg" 
-                  alt="Holy Fire" 
+                <img
+                  src={`${import.meta.env.BASE_URL}images/why-us-havan.jpg`}
+                  alt="Sacred lamps and spiritual atmosphere"
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
