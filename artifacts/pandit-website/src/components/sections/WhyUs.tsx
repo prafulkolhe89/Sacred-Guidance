@@ -40,11 +40,11 @@ export function WhyUs() {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="col-span-1 sm:col-span-2 rounded-2xl overflow-hidden border-2 border-gold/20 shadow-2xl h-64">
+              <div className="col-span-1 sm:col-span-2 rounded-2xl overflow-hidden border-2 border-gold/20 shadow-2xl">
                 <img
-                  src={`${import.meta.env.BASE_URL}images/why-us-havan.jpg`}
-                  alt="Sacred lamps and spiritual atmosphere"
-                  className="w-full h-full object-cover"
+                  src={`${import.meta.env.BASE_URL}images/why-us-havan.png`}
+                  alt="Traditional Hindu Havan — sacred ritual fire in a decorated pit with marigold flowers"
+                  className="w-full h-auto object-cover object-center"
                   loading="lazy"
                   decoding="async"
                 />
