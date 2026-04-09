@@ -5,8 +5,15 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/Home";
 import NotFound from "@/pages/not-found";
 import SatyanarayanPujaNagpur from "@/pages/SatyanarayanPujaNagpur";
+import { localBusinessJsonLd } from "@/data/localBusinessSchema";
+import { useJsonLd } from "@/hooks/usePageMeta";
 
 const queryClient = new QueryClient();
+
+function LocalBusinessSchema() {
+  useJsonLd(localBusinessJsonLd, "schema-local-business");
+  return null;
+}
 
 function Router() {
   return (
@@ -26,6 +33,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+          <LocalBusinessSchema />
           <Router />
         </WouterRouter>
         <Toaster />

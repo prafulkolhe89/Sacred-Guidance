@@ -107,7 +107,7 @@ export default function SatyanarayanPujaNagpur() {
     path: "/satyanarayan-puja-nagpur",
   });
 
-  useJsonLd(faqJsonLd);
+  useJsonLd(faqJsonLd, "schema-faq-page");
 
   const waPrefill = encodeURIComponent(
     "Hari Om. I would like to book Satyanarayan Puja in Nagpur. Please share available dates and details.",

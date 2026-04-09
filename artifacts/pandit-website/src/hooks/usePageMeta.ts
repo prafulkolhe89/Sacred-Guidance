@@ -46,21 +46,23 @@ export function usePageMeta({ title, description, path }: Options) {
   }, [title, description, path]);
 }
 
-export function useJsonLd(jsonLd: object | null) {
+export function useJsonLd(
+  jsonLd: object | null,
+  scriptId = "page-jsonld",
+) {
   useEffect(() => {
     if (!jsonLd) return;
-    const id = "page-jsonld";
-    const existing = document.getElementById(id);
+    const existing = document.getElementById(scriptId);
     if (existing) existing.remove();
     const script = document.createElement("script");
-    script.id = id;
+    script.id = scriptId;
     script.type = "application/ld+json";
     script.textContent = JSON.stringify(jsonLd);
     document.head.appendChild(script);
     return () => {
       script.remove();
     };
-  }, [jsonLd]);
+  }, [jsonLd, scriptId]);
 }
 
 export { DEFAULT_TITLE, DEFAULT_DESCRIPTION, SITE };
