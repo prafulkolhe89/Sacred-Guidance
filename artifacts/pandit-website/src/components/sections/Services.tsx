@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'wouter';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -95,9 +96,19 @@ export function Services() {
                   <CardTitle className="text-2xl text-maroon">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow flex flex-col justify-between">
-                  <CardDescription className="text-base text-maroon/70 mb-8">
+                  <CardDescription className="text-base text-maroon/70 mb-4">
                     {service.description}
                   </CardDescription>
+                  {service.title === "Satyanarayan Puja" && (
+                    <p className="mb-6">
+                      <Link
+                        href="/satyanarayan-puja-nagpur"
+                        className="text-sm font-semibold text-saffron hover:underline"
+                      >
+                        Satyanarayan Puja in Nagpur — full details
+                      </Link>
+                    </p>
+                  )}
                   <Button 
                     variant="ghost" 
                     className="w-full justify-between px-0 font-semibold hover:bg-transparent hover:text-saffron group/btn"
