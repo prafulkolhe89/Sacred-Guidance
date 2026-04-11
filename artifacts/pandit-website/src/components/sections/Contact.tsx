@@ -19,9 +19,11 @@ const WHATSAPP_INBOX_E164 = '918421115719';
 const SERVICE_LABELS: Record<string, string> = {
   'griha-pravesh': 'Griha Pravesh Puja',
   satyanarayan: 'Satyanarayan Puja',
+  vastu: 'Vastu Shanti & Consultant',
   ganesh: 'Ganesh Chaturthi Puja',
   rudrabhishek: 'Rudrabhishek Puja',
   astrology: 'Astrology Consultation',
+  namkaran: 'Namkaran & family rituals',
   other: 'Other rituals / general inquiry',
 };
 
@@ -260,9 +262,11 @@ export function Contact() {
                   <option value="">Select a service...</option>
                   <option value="griha-pravesh">Griha Pravesh Puja</option>
                   <option value="satyanarayan">Satyanarayan Puja</option>
+                  <option value="vastu">Vastu Shanti & Consultant</option>
                   <option value="ganesh">Ganesh Chaturthi Puja</option>
                   <option value="rudrabhishek">Rudrabhishek Puja</option>
                   <option value="astrology">Astrology Consultation</option>
+                  <option value="namkaran">Namkaran & family rituals</option>
                   <option value="other">Other Rituals / General Inquiry</option>
                 </select>
               </div>

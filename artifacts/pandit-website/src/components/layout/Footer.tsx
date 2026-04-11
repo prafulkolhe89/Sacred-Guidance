@@ -1,5 +1,7 @@
 import React from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
+import { SERVICE_FOOTER_LINKS } from '@/data/serviceLandingData';
+import { absolutePageUrl, homeRootUrl, homeSectionUrl } from '@/lib/site';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -16,9 +18,14 @@ export function Footer() {
           <div className="flex flex-col space-y-4">
             <div className="flex items-center gap-2">
               <span className="text-saffron text-3xl">🕉️</span>
-              <span className="font-display font-bold text-3xl text-ivory">
-                Pandit Devesh Darbhe
-              </span>
+              <div className="flex flex-col">
+                <span className="font-display font-bold text-3xl text-ivory leading-tight">
+                  Darbhe Guruji
+                </span>
+                <span className="text-sm text-gold/90 font-medium tracking-wide">
+                  Pandit Devesh Darbhe
+                </span>
+              </div>
             </div>
             <p className="text-ivory/60 leading-relaxed max-w-sm">
               Authentic Vedic Astrology for Clarity, Balance, and Positivity. Bringing peace and divine blessings into your life through traditional rituals.
@@ -29,10 +36,36 @@ export function Footer() {
           <div className="flex flex-col space-y-4">
             <h4 className="font-display text-xl text-gold font-semibold">Quick Links</h4>
             <ul className="space-y-3">
-              {['Home', 'About', 'Services', 'Contact'].map((item) => (
-                <li key={item}>
-                  <a href={`#${item.toLowerCase()}`} className="hover:text-saffron transition-colors inline-block hover:translate-x-1 transform duration-200">
-                    {item}
+              <li>
+                <a href={homeRootUrl()} className="hover:text-saffron transition-colors inline-block hover:translate-x-1 transform duration-200">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href={homeSectionUrl('about')} className="hover:text-saffron transition-colors inline-block hover:translate-x-1 transform duration-200">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href={homeSectionUrl('services')} className="hover:text-saffron transition-colors inline-block hover:translate-x-1 transform duration-200">
+                  Services
+                </a>
+              </li>
+              <li>
+                <a href={homeSectionUrl('contact')} className="hover:text-saffron transition-colors inline-block hover:translate-x-1 transform duration-200">
+                  Contact
+                </a>
+              </li>
+            </ul>
+            <h4 className="font-display text-lg text-gold font-semibold pt-2">Service pages</h4>
+            <ul className="space-y-3">
+              {SERVICE_FOOTER_LINKS.map(({ path, label }) => (
+                <li key={path}>
+                  <a
+                    href={absolutePageUrl(path)}
+                    className="hover:text-saffron transition-colors inline-block hover:translate-x-1 transform duration-200 text-sm"
+                  >
+                    {label}
                   </a>
                 </li>
               ))}
@@ -68,7 +101,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-gold/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-ivory/50">
-          <p>© {currentYear} Pandit Devesh Darbhe. All Rights Reserved.</p>
+          <p>© {currentYear} Darbhe Guruji (Pandit Devesh Darbhe). All Rights Reserved.</p>
           <p>Designed by prafulKolhe</p>
         </div>
       </div>
