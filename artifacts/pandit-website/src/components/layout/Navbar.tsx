@@ -62,7 +62,7 @@ export function Navbar() {
             isScrolled ? "text-maroon" : "text-ivory",
           )}
         >
-          Darbhe Guruji
+          Pandit Devesh Darbhe
         </span>
         <span
           className={cn(
@@ -70,7 +70,7 @@ export function Navbar() {
             isScrolled ? "text-gold" : "text-gold/80",
           )}
         >
-          Pandit Devesh Darbhe
+          Authentic Vedic Guidance
         </span>
       </div>
     </>

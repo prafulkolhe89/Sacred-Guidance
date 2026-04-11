@@ -4,8 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/Home";
 import NotFound from "@/pages/not-found";
-import ServiceLanding from "@/pages/ServiceLanding";
-import { SERVICE_LANDING_ORDER } from "@/data/serviceLandingData";
+import SatyanarayanPujaNagpur from "@/pages/SatyanarayanPujaNagpur";
 import { localBusinessJsonLd } from "@/data/localBusinessSchema";
 import { useJsonLd } from "@/hooks/usePageMeta";
 
@@ -20,9 +19,10 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      {SERVICE_LANDING_ORDER.map((path) => (
-        <Route key={path} path={path} component={ServiceLanding} />
-      ))}
+      <Route
+        path="/satyanarayan-puja-nagpur"
+        component={SatyanarayanPujaNagpur}
+      />
       <Route component={NotFound} />
     </Switch>
   );

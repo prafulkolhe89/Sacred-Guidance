@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { usePageMeta, DEFAULT_TITLE, DEFAULT_DESCRIPTION } from '@/hooks/usePageMeta';
 import { Navbar } from '@/components/layout/Navbar';
 import { Hero } from '@/components/sections/Hero';
 import { About } from '@/components/sections/About';
@@ -12,12 +11,6 @@ import { StickyElements } from '@/components/layout/StickyElements';
 import { SectionDivider } from '@/components/shared/SectionDivider';
 
 export default function Home() {
-  usePageMeta({
-    title: DEFAULT_TITLE,
-    description: DEFAULT_DESCRIPTION,
-    path: '/',
-  });
-
   useEffect(() => {
     const hash = window.location.hash;
     if (!hash) return;
