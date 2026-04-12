@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
+
   <url>
     <loc>https://www.darbheguruji.com/</loc>
   </url>
 
   <url>
-    <loc>https://www.darbheguruji.com/#services</loc>
-  </url>
-
-  <url>
-    <loc>https://www.darbheguruji.com/#contact</loc>
-  </url>
-
-  <url>
     <loc>https://www.darbheguruji.com/satyanarayan-puja-nagpur</loc>
+  </url>
+
+  <url>
+    <loc>https://www.darbheguruji.com/griha-pravesh-puja-nagpur</loc>
+  </url>
+
+  <url>
+    <loc>https://www.darbheguruji.com/vastu-shanti-puja-nagpur</loc>
+  </url>
+
+  <url>
+    <loc>https://www.darbheguruji.com/ganpati-puja-nagpur</loc>
+  </url>
+
+  <url>
+    <loc>https://www.darbheguruji.com/vivah-marriage-puja-nagpur</loc>
+  </url>
+
+  <url>
+    <loc>https://www.darbheguruji.com/astrology-consultation-nagpur</loc>
   </url>
 
 </urlset>

@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { normalizePathname } from "@/lib/pathname";
 
 const NAV_LINKS = [
   { name: "Home", id: "home" },
@@ -18,7 +19,7 @@ function sectionHref(sectionId: string) {
 
 export function Navbar() {
   const [location] = useLocation();
-  const isHome = location === "/" || location === "";
+  const isHome = normalizePathname(location) === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 

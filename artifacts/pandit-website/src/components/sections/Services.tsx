@@ -3,44 +3,71 @@ import { Link } from 'wouter';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Home, Star, Sparkles, Flame, Moon, PlusCircle } from 'lucide-react';
+import { Home, Star, Sparkles, Flame, Moon, PlusCircle, Compass, Heart } from 'lucide-react';
+import { WHATSAPP_E164 } from '@/constants/contact';
 
-const services = [
+type ServiceItem = {
+  title: string;
+  description: string;
+  icon: typeof Home;
+  color: string;
+  href?: string;
+};
+
+const services: ServiceItem[] = [
   {
     title: "Griha Pravesh Puja",
     description: "Vedic rituals performed to ensure happiness, harmony, and lifelong prosperity in your new home.",
     icon: Home,
-    color: "text-amber"
+    color: "text-amber",
+    href: "/griha-pravesh-puja-nagpur",
+  },
+  {
+    title: "Vastu Shanti Puja",
+    description: "Balance your home or workplace with traditional Vastu Shanti rituals and practical guidance.",
+    icon: Compass,
+    color: "text-gold",
+    href: "/vastu-shanti-puja-nagpur",
   },
   {
     title: "Satyanarayan Puja",
     description: "Invoke positivity, harmony, and abundance through the sacred Katha of Lord Satyanarayan.",
     icon: Star,
-    color: "text-saffron"
+    color: "text-saffron",
+    href: "/satyanarayan-puja-nagpur",
   },
   {
-    title: "Ganesh Chaturthi Puja",
-    description: "Begin new journeys and overcome obstacles with the positivity and blessings of Lord Ganesha.",
+    title: "Ganpati Puja",
+    description: "Begin new journeys and seek Lord Ganesha’s blessings — festival or single-day Ganpati Puja at home.",
     icon: Sparkles,
-    color: "text-gold"
+    color: "text-gold",
+    href: "/ganpati-puja-nagpur",
   },
   {
-    title: "Rudrabhishek Puja",
-    description: "Seek Lord Shiva's divine blessings for profound peace, inner strength, and spiritual growth.",
-    icon: Flame,
-    color: "text-saffron"
+    title: "Vivah (Marriage) Puja",
+    description: "Hindu wedding-day vidhi, engagement rituals, and family ceremonies with clear, respectful guidance.",
+    icon: Heart,
+    color: "text-saffron",
+    href: "/vivah-marriage-puja-nagpur",
   },
   {
     title: "Astrology Consultation",
     description: "Gain clarity on life's path, career, and relationships through authentic Vedic astrology readings.",
     icon: Moon,
-    color: "text-maroon"
+    color: "text-maroon",
+    href: "/astrology-consultation-nagpur",
+  },
+  {
+    title: "Rudrabhishek Puja",
+    description: "Seek Lord Shiva's divine blessings for profound peace, inner strength, and spiritual growth.",
+    icon: Flame,
+    color: "text-saffron",
   },
   {
     title: "Other Sacred Rituals",
-    description: "Contact us to inquire about marriages, naming ceremonies, and other specific Vedic rituals.",
+    description: "Contact us to inquire about naming ceremonies, mundan, and other specific Vedic rituals.",
     icon: PlusCircle,
-    color: "text-gold"
+    color: "text-gold",
   }
 ];
 
@@ -56,7 +83,11 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" as const },
+  },
 };
 
 export function Services() {
@@ -99,22 +130,22 @@ export function Services() {
                   <CardDescription className="text-base text-maroon/70 mb-4">
                     {service.description}
                   </CardDescription>
-                  {service.title === "Satyanarayan Puja" && (
+                  {service.href ? (
                     <p className="mb-6">
                       <Link
-                        href="/satyanarayan-puja-nagpur"
+                        href={service.href}
                         className="text-sm font-semibold text-saffron hover:underline"
                       >
-                        Satyanarayan Puja in Nagpur — full details
+                        Learn more
                       </Link>
                     </p>
-                  )}
+                  ) : null}
                   <Button 
                     variant="ghost" 
                     className="w-full justify-between px-0 font-semibold hover:bg-transparent hover:text-saffron group/btn"
                     onClick={() => {
                       const msg = encodeURIComponent(`Hari Om. I would like to inquire about the ${service.title}.`);
-                      window.open(`https://wa.me/918421115719?text=${msg}`, '_blank');
+                      window.open(`https://wa.me/${WHATSAPP_E164}?text=${msg}`, '_blank');
                     }}
                   >
                     Enquire Now
